@@ -30,5 +30,18 @@ namespace MVCKutuphane.Controllers
             db.SaveChanges(); //değişiklikleri kaydet demek.
             return View(); //sayfayı bize geri döndürecektir.
         }
+        public ActionResult KategoriSil(int id)
+        {
+            var kategori = db.TBLKATEGORI.Find(id);
+            db.TBLKATEGORI.Remove(kategori);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+                
+        }
+        public ActionResult KategoriGetir(int id)
+        {
+            var ktg = db.TBLKATEGORI.Find(id);
+            return View("KategoriGetir", ktg);
+        }
     }
 }

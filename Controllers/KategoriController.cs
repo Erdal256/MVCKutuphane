@@ -24,7 +24,7 @@ namespace MVCKutuphane.Controllers
         //TBLKATEGORİDEN türediği için p parametresini ekledik.
         //kategorilerden Add View diyerek kategoriekle türettik.
         [HttpPost] // sayfa yülendiğinde bir kısıma tıkladığımızda çalışması için bu kısım çalışsın.
-        public ActionResult KategoriEkle(TBLKATEGORI p) 
+        public ActionResult KategoriEkle(TBLKATEGORI p)
         {
             db.TBLKATEGORI.Add(p);//eklemek p den gelen degerleri ekle
             db.SaveChanges(); //değişiklikleri kaydet demek.
@@ -36,12 +36,19 @@ namespace MVCKutuphane.Controllers
             db.TBLKATEGORI.Remove(kategori);
             db.SaveChanges();
             return RedirectToAction("Index");
-                
+
         }
         public ActionResult KategoriGetir(int id)
         {
             var ktg = db.TBLKATEGORI.Find(id);
             return View("KategoriGetir", ktg);
+        }
+        public ActionResult KategoriGuncelle(TBLKATEGORI p)
+        {
+            var ktg = db.TBLKATEGORI.Find(p.ID);
+            ktg.ADI = p.ADI;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

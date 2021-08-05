@@ -39,5 +39,15 @@ namespace MVCKutuphane.Controllers
             var yzr = db.TBLYAZAR.Find(id);
             return View("YazarGetir", yzr);
         }
+        public ActionResult YazarGuncelle(TBLYAZAR p)
+        {
+            var yzr = db.TBLYAZAR.Find(p.ID);
+            yzr.AD = p.AD;
+            yzr.SOYAD = p.SOYAD;
+            yzr.DETAY = p.DETAY;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+           
+        }
     }
 }

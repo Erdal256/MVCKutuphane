@@ -11,7 +11,8 @@ namespace MVCKutuphane.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TBLUYELER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,17 +21,21 @@ namespace MVCKutuphane.Models.Entity
             this.TBLCEZALAR = new HashSet<TBLCEZALAR>();
             this.TBLHAREKET = new HashSet<TBLHAREKET>();
         }
-    
+
         public int ID { get; set; }
+        [Required(ErrorMessage = "Adý Boþ Býrakamazsýnýz!!!")]
+        [StringLength(20, ErrorMessage = "En fazla 20 karakter girebilirsiniz!")]
         public string AD { get; set; }
         public string SOYAD { get; set; }
+        //mail formatý
         public string MAIL { get; set; }
         public string KULANICIADI { get; set; }
+        [StringLength(10, ErrorMessage = "En fazla 10 karakter girebilirsiniz!")]
         public string SIFRE { get; set; }
         public string FOTOGRAF { get; set; }
         public string TELEFON { get; set; }
         public string OKUL { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLCEZALAR> TBLCEZALAR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

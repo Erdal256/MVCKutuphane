@@ -4,15 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVCKutuphane.Models.Entity;
+using PagedList;
+using PagedList.Mvc;
 namespace MVCKutuphane.Controllers
 {
     public class UyeController : Controller
     {
         // GET: Uye
         DBKUTUPHANEEntities1 db = new DBKUTUPHANEEntities1();
-        public ActionResult Index()
+        public ActionResult Index(int sayfa = 1)
         {
-            var degerler = db.TBLUYELER.ToList();
+            //var degerler = db.TBLUYELER.ToList();
+            var degerler = db.TBLUYELER.ToList().ToPagedList(sayfa, 3);
             return View(degerler);
         }
         public ActionResult UyeEkle()
@@ -30,6 +33,33 @@ namespace MVCKutuphane.Controllers
             db.SaveChanges();
             return View();
         }
-      
+        public ActionResult UyeSil(int id)
+        {
+            var uye = db.TBLUYELER.Find(id);
+            db.TBLUYELER.Remove(uye);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
+        public ActionResult UyeGetir(int id)
+        {
+            var uye = db.TBLUYELER.Find(id);
+            return View("UyeGetir", uye);
+        }
+        public ActionResult UyeGuncelle(TBLUYELER p)
+        {
+            var uye = db.TBLUYELER.Find(p.ID);
+            uye.AD = p.AD;
+            uye.SOYAD = p.SOYAD;
+            uye.MAIL = p.MAIL;
+            uye.KULANICIADI = p.KULANICIADI;
+            uye.SIFRE = p.SIFRE;
+            uye.OKUL = p.OKUL;
+            uye.TELEFON = p.TELEFON;
+            uye.FOTOGRAF = p.FOTOGRAF;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

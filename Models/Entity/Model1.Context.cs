@@ -36,5 +36,6 @@ namespace MVCKutuphane.Models.Entity
         public virtual DbSet<TBLYAZAR> TBLYAZAR { get; set; }
         public virtual DbSet<TBLHAKKIMIZDA> TBLHAKKIMIZDA { get; set; }
         public virtual DbSet<TBLILETISIM> TBLILETISIM { get; set; }
+        public virtual DbSet<TBLMESAJLAR> TBLMESAJLAR { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace MVCKutuphane.Controllers
         DBKUTUPHANEEntities1 db = new DBKUTUPHANEEntities1();
         public ActionResult Index()
         {
-            var degerler = db.TBLKATEGORI.ToList();
+            var degerler = db.TBLKATEGORI.Where(x=>x.DURUM == true).ToList();
             return View(degerler);
         }
         [HttpGet] //sayfa yüklendiğinde bu kısım çalışsın. başka bir şey yapmasın
@@ -33,8 +33,10 @@ namespace MVCKutuphane.Controllers
         public ActionResult KategoriSil(int id)
         {
             var kategori = db.TBLKATEGORI.Find(id);
-            db.TBLKATEGORI.Remove(kategori);
+            //db.TBLKATEGORI.Remove(kategori);3
+            kategori.DURUM = false;
             db.SaveChanges();
+
             return RedirectToAction("Index");
 
         }

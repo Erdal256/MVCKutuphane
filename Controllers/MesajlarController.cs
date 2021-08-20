@@ -13,13 +13,25 @@ namespace MVCKutuphane.Controllers
         DBKUTUPHANEEntities1 db = new DBKUTUPHANEEntities1();
         public ActionResult Index()
         {
-            //var uyemail = (string)Session["Mail"].ToString();
-            var mesajlar = db.TBLMESAJLAR./*Where(x => x.ALICI == uyemail.ToString()).*/ToList(); ;
+            var uyemail = (string)Session["Mail"].ToString();
+            var mesajlar = db.TBLMESAJLAR.Where(x => x.ALICI == uyemail.ToString()).ToList(); ;
             return View(mesajlar);
         }
+        [HttpGet]
         public ActionResult YeniMesaj()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult YeniMesaj(TBLMESAJLAR t)
+        {
+            var uyemail = (string)Session["Mail"].ToString();
+            t.GONDEREN = uyemail.ToString();
+            t.TARIH = DateTime.Parse(DateTime.Now.ToShortDateString());
+            db.TBLMESAJLAR.Add(t);
+            db.SaveChanges();
+            return View();
+            //return RedirectToAction("Giden", "Mesajlar");
         }
     }
 }

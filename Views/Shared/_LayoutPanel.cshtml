@@ -20,15 +20,16 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
         <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light">Ad Soyad</div>
+            <div class="sidebar-heading border-bottom bg-light">Öğrenci Paneli</div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Panelim/Index">Profilim</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Mesajlar/Index">Mesajlar</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Mesajlar/YeniMesaj">Yeni Mesaj</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Panelim/Index/">Profilim</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Mesajlar/Index/">Gelen Mesajlar</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Mesajlar/Giden/">Giden Mesajlar</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Mesajlar/YeniMesaj/">Yeni Mesaj</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Duyurular</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Panelim/Kitaplarım/">Kitaplarım</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Vitrin/Index">Vitrin</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Yardım</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Vitrin/Index/">Vitrin</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Panelim/LogOut/">Çıkış Yap</a>
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -45,8 +46,8 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ayarlar</a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Panelim/Index">Hesabım</a>
-                                    <a class="dropdown-item" href="#!">Çıkış Yap</a>
+                                    <a class="dropdown-item" href="/Panelim/Index/">Hesabım</a>
+                                    <a class="dropdown-item" href="/Panelim/LogOut/">Çıkış Yap</a>
                                     <div class="dropdown-divider"></div>
                                     @*<a class="dropdown-item" href="#!">Something else here</a>*@
                                 </div>
@@ -57,7 +58,7 @@
             </nav>
             <!-- Page content-->
             <div class="container-fluid">
-           @RenderBody()
+                @RenderBody()
             </div>
         </div>
     </div>

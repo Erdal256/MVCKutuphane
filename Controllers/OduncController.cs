@@ -15,6 +15,7 @@ namespace MVCKutuphane.Controllers
         {
             var degerler = db.TBLHAREKET/*.Where(x => x.ISLEMDURUM == false)*/.ToList();
             return View(degerler);
+
         }
         [HttpGet]
         public ActionResult OduncVer()
@@ -28,9 +29,9 @@ namespace MVCKutuphane.Controllers
             db.SaveChanges();
             return View();
         }
-        public ActionResult Odunciade(TBLHAREKET p)
+        public ActionResult Odunciade(int id)
         {
-            var odn = db.TBLHAREKET.Find(p.ID);
+            var odn = db.TBLHAREKET.Find(id);
             return View("Odunciade", odn);
         }
         public ActionResult OduncGuncelle(TBLHAREKET p)

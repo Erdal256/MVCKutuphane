@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using MVCKutuphane.Models.Entity;
 
 namespace MVCKutuphane.Controllers
@@ -39,6 +40,11 @@ namespace MVCKutuphane.Controllers
             var id = db.TBLUYELER.Where(x => x.MAIL == kullanici.ToString()).Select(z => z.ID).FirstOrDefault();
             var degerler = db.TBLHAREKET.Where(x => x.UYE == id).ToList();
             return View(degerler);
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut(); //Oturumdan çıkış yap
+            return RedirectToAction("GirisYap","Login");
         }
     }
 }

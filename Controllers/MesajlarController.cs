@@ -13,9 +13,15 @@ namespace MVCKutuphane.Controllers
         DBKUTUPHANEEntities1 db = new DBKUTUPHANEEntities1();
         public ActionResult Index()
         {
-            var uyemail = (string)Session["Mail"].ToString();
+            var uyemail = (string)Session["Mail"].ToString(); //Mailden gelen değer
             var mesajlar = db.TBLMESAJLAR.Where(x => x.ALICI == uyemail.ToString()).ToList(); ;
             return View(mesajlar);
+        }
+        public ActionResult Giden()
+        {
+            var uyemail = (string)Session["Mail"].ToString();
+            var mesajlar = db.TBLMESAJLAR.Where(x => x.GONDEREN == uyemail.ToString()).ToList(); ; //gönderen üye maile eşit olan değer
+            return View(mesajlar); 
         }
         [HttpGet]
         public ActionResult YeniMesaj()
@@ -30,8 +36,7 @@ namespace MVCKutuphane.Controllers
             t.TARIH = DateTime.Parse(DateTime.Now.ToShortDateString());
             db.TBLMESAJLAR.Add(t);
             db.SaveChanges();
-            return View();
-            //return RedirectToAction("Giden", "Mesajlar");
+            return RedirectToAction("Giden", "Mesajlar");
         }
     }
 }
